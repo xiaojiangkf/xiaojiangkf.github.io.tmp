@@ -1,0 +1,261 @@
+---
+layout: post
+title:  "CentOS7.2-Tencent!"
+date:   2018-09-02 18:57:03 +0800
+categories: xiaojiang update
+---
+# centos7.2-tencent
+
+<!-- markdownlint-disable MD034 -->
+
+直接下载 [hello.txt]({{ site.url  }}/assets/hello.txt)
+
+直接下载 [hello.txt](/assets/hello.txt)
+
+直接下载 [hello.pdf](/assets/hello.pdf)
+
+直接下载 ![hello.jpg](/assets/hello.jpg)
+
+## jdk
+
+tar -zxf jdk-8u181-linux-x64.tar.gz -C /apps/java/
+vi /etc/profile.d/java.sh
+
+    #!/bin/bash
+
+    JAVA_HOME=/apps/java/jdk1.8.0_181
+    JRE_HOME=$JAVA_HOME/jre
+    PATH=$PATH:$JAVA_HOME/bin
+    CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+
+    export JAVA_HOME
+    export JRE_HOME
+    export PATH
+    export CLASSPATH
+
+source /etc/profile.d/java.sh
+
+java -version
+
+## git
+
+yum install git -y
+
+vi .gitconfig
+
+    [user]
+        name = jiangkunfeng
+        email = 1209096864@qq.com
+    [alias]
+        co = checkout
+        br = branch
+        ci = commit
+        st = status
+        ll = log --oneline
+        lm = log --date=format:'%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset %Cgreen(%cd) %C(bold blue)<%an> - %Cblue %s - %C(yellow)%d'
+        lh = log --pretty=format:'%Cred%h %C(yellow)%ad | %s%Creset%d %Cred[%an]' --graph --date=short
+        lc = log --pretty=format:'%Cred%H%Creset %C(yellow)%s'
+        trace = branch --set-upstream
+
+    [core]
+        editor = vim
+
+生成公钥
+
+## vi
+
+vi .vimrc
+
+    set nocompatible
+    "set nu
+    "set rnu
+
+    syntax on
+
+    set showmode
+    set showcmd
+    "set nowarp
+
+    set scrolloff=3
+    "set cursorline
+    "set cursorcolumn
+    "set ruler
+
+    set nobackup
+    set noswapfile
+
+    set confirm
+    set novb
+    set guicursor=a:block-blinkon0
+
+    set autoindent
+    set tabstop=4
+    set softtabstop=4
+    set shiftwidth=4
+    set expandtab
+
+    set ignorecase
+    "set hlsearch
+    set incsearch
+
+    filetype on
+
+    set wildmenu
+    "set backspace=2
+    set whichwrap+=<,>,h,l
+    set showmatch
+
+    set encoding=utf-8
+    set termencoding=utf-8
+    set fileencoding=utf-8
+    "set fileencoding=ucs-bom,utf-8,cp936
+
+    imap <C-l> <Right>
+    imap <C-h> <Left>
+    imap <C-j> <Down>
+    imap <C-k> <Up>
+
+    nmap <C-S-down> ddp
+    imap <C-S-down> <esc>ddp
+    nmap <C-S-up> kddpk
+    imap <C-S-up> <esc>kddpk
+
+    imap () ()<ESC>i
+    imap [] []<ESC>i
+    imap {} {}<ESC>i
+    imap <> <><ESC>i
+    imap '' ''<ESC>i
+    imap "" ""<ESC>i
+
+问题: 在配置文件中映射ctrl+hjkl为光标移动，映射后无效或者映射以后按<BS>键不能删除
+
+原因: 因为你的终端软件的默认配置是按下<BS>键以后 发送的是：^H（ASCII码0x08），而^H在你的vim里被你 inoremap成了ctrl+h，所以你按了<BS>会被认为按下了左键。
+
+    早在VT100终端时代，^H（ASCII码0x08）表示<BS>而^?（ASCII码0x7f）表示<DEL>。过去0x7f是留给DELETE键使用的。而到了VT220时代，DELETE已经变为^[[3~（ASCII码 0x1b,0x5b,0x33,0x7e共4个字节），而^?的0x7f换给了我们的<BS>，有些终端软件，默认<BS>还是使用VT100的^H，你需要做的就是改一下终端默认配置而已。
+
+    你可以在你服务端下面查看下默认的键位设置：
+
+    $ stty -a
+    1
+    现在所有Linux服务器的erase（bs）基本都是^?了（如果链接到非Linux老操作系统erase不是这个的话，需要改一下，可以在系统层改，也可以vim里面set t_kb=…），vim里面也是认可^?的，可有些终端软件却默认发送^H，不过好在他们都支持修改：
+
+解决: 修改xshell配置: alt+p->终端->键盘->backspace键序列->ASCII 127
+
+## wordpress-install
+
+### nginx
+
+yum install nginx -y
+
+vi /etc/nginx/nginx.conf
+
+    # listen       [::]:80 default_server;
+
+nginx
+
+    http://111.231.60.98/
+
+chkconfig nginx on  // systemctl enable nginx.service
+
+### mysql
+
+wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+
+rpm -ivh mysql-community-release-el7-5.noarch.rpm
+
+    /etc/yum.repos.d/mysql-community.repo
+    /etc/yum.repos.d/mysql-community-source.repo
+
+yum install mysql-server -y
+
+systemctl restart mysqld.service
+
+/usr/bin/mysqladmin -u root password 'jiang$passwd$wdpre$$'
+
+### php
+
+yum install php-fpm php-mysql -y
+
+systemctl restart php-fpm
+
+netstat -nltp | grep php-fpm
+
+systemctl enable php-fpm.service
+
+### wordpress
+
+yum install wordpress -y
+
+    /usr/share/wordpress
+
+mysql -uroot --password='jiang$passwd$wdpre$$'
+
+    create database wordpress;
+    exit
+
+### wordpress-mysql
+
+vi /etc/wordpress/wp-config.php
+
+    define('DB_NAME', 'wordpress');
+    define('DB_USER', 'root');
+    define('DB_PASSWORD', 'jiang$passwd$wdpre$$');
+    define('DB_HOST', 'localhost');
+    define('DB_CHARSET', 'utf8');
+    $table_prefix  = 'wp_';
+
+### wordpress-nginx
+
+cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
+
+vi /etc/nginx/nginx.conf
+
+    server {
+        listen 80;
+        root /usr/share/wordpress;
+        location / {
+            index index.php index.html index.htm;
+            try_files $uri $uri/ /index.php index.php;
+        }
+        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+        location ~ .php$ {
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+            include        fastcgi_params;
+        }
+    }
+
+nginx -s reload
+
+    http://111.231.60.98/wp-admin/install.php
+
+### 配置
+
+- 站名:qingli
+- 用户名:xiaojiangkf
+- 用户密码:na3VEHkowLoD%fOPLp
+
+### 其他
+
+https://blog.csdn.net/coderpark/article/details/50097025
+
+There has been an error cropping your image.
+
+yum install php-gd -y
+
+## vsftpd
+
+yum install vsftpd -y
+
+systemctl start  vsftpd.service
+
+netstat -ltpn | grep 21
+
+ftp://111.231.60.98 -> /var/ftp
+
+    vsftpd 的配置目录为 /etc/vsftpd，包含下列的配置文件：
+    vsftpd.conf 为主要配置文件
+    ftpusers 配置禁止访问 FTP 服务器的用户列表
+    user_list 配置用户访问控制
+

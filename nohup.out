@@ -1,0 +1,68 @@
+Configuration file: /root/myblog/_config.yml
+            Source: /root/myblog
+       Destination: /root/myblog/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+                    done in 0.627 seconds.
+ Auto-regeneration: enabled for '/root/myblog'
+    Server address: http://127.0.0.1:4000/
+  Server running... press ctrl-c to stop.
+[2018-09-03 13:50:06] ERROR `/favicon.ico' not found.
+[2018-09-03 13:52:48] ERROR `/favicon.ico' not found.
+      Regenerating: 1 file(s) changed at 2018-09-03 13:54:27
+                    _posts/2018-09-03-centos7.2.markdown
+                    ...done in 0.253679163 seconds.
+
+      Regenerating: 1 file(s) changed at 2018-09-03 13:54:50
+                    assets/表情.gif
+                    ...done in 0.261517079 seconds.
+
+      Regenerating: 1 file(s) changed at 2018-09-03 13:54:50
+                    assets/表情.gif
+                    ...done in 0.257672356 seconds.
+
+      Regenerating: 1 file(s) changed at 2018-09-03 13:55:14
+                    assets/app111357411.jpg
+                    ...done in 0.272830514 seconds.
+
+      Regenerating: 2 file(s) changed at 2018-09-03 13:55:21
+                    assets/hello.jpg
+                    assets/app111357411.jpg
+                    ...done in 0.263837236 seconds.
+
+      Regenerating: 1 file(s) changed at 2018-09-03 13:55:35
+                    assets/表情.gif
+                    ...done in 0.278415012 seconds.
+
+      Regenerating: 2 file(s) changed at 2018-09-03 13:56:19
+                    assets/hello.jpg.bak
+                    assets/hello.jpg
+                    ...done in 0.232734043 seconds.
+
+[2018-09-03 13:56:22] ERROR `/assets/hello.jpg' not found.
+[2018-09-03 13:56:23] ERROR `/assets/hello.jpg' not found.
+[2018-09-03 13:56:23] ERROR `/assets/hello.jpg' not found.
+      Regenerating: 1 file(s) changed at 2018-09-03 14:00:22
+                    _posts/2018-09-03-content.md
+                    ...done in 0.342034239 seconds.
+
+      Regenerating: 1 file(s) changed at 2018-09-03 14:01:25
+                    _posts/2018-09-03-content.md
+                    ...done in 0.301531731 seconds.
+
+[2018-09-03 14:01:29] ERROR `/favicon.ico' not found.
+[2018-09-03 14:01:29] ERROR `/assets/hello.jpg' not found.
+[2018-09-03 14:01:30] ERROR `/assets/hello.jpg' not found.
+[2018-09-03 14:01:30] ERROR `/assets/hello.jpg' not found.
+[2018-09-03 14:01:56] ERROR `/assets/hello.jpg' not found.
+[2018-09-03 14:01:57] ERROR `/assets/hello.jpg' not found.
+[2018-09-03 14:01:57] ERROR `/assets/hello.jpg' not found.
+      Regenerating: 1 file(s) changed at 2018-09-03 14:04:04
+                    _drafts/a-draft-post.md
+                    ...done in 0.295693658 seconds.
+
+[2018-09-03 14:05:50] ERROR `/favicon.ico' not found.
+[2018-09-03 14:05:50] ERROR `/favicon.ico' not found.
+[2018-09-03 14:05:51] ERROR `/favicon.ico' not found.
+[2018-09-03 14:05:51] ERROR `/favicon.ico' not found.
+[2018-09-03 14:07:30] ERROR `/favicon.ico' not found.
